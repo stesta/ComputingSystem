@@ -2,12 +2,12 @@ name:                ComputingSystem-Haskell
 version:             0.1.0.0
 synopsis:            Initial project template from stack
 description:         Please see README.md
-homepage:            https://github.com/githubuser/ComputingSystem-Haskell#readme
-license:             BSD3
+homepage:            https://github.com/stesta/ComputingSystem-Haskell#readme
+license:             MIT
 license-file:        LICENSE
-author:              Author name here
-maintainer:          example@example.com
-copyright:           2017 Author name here
+author:              Steven Testa
+maintainer:          steve@testasoftware.com
+copyright:           2017 Testa Software
 category:            Web
 build-type:          Simple
 extra-source-files:  README.md
@@ -15,7 +15,7 @@ cabal-version:       >=1.10
 
 library
   hs-source-dirs:      src
-  exposed-modules:     Lib
+  exposed-modules:     ElementaryGates, ALU
   build-depends:       base >= 4.7 && < 5
   default-language:    Haskell2010
 
