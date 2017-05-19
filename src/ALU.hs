@@ -1,6 +1,6 @@
 module ALU where
 
-import ElementaryGates
+import Data.Bits ((.&.), complement, zeroBits)
 
 -- | ALU: Aritmetic Logic Unit
 -- | inputs: 
@@ -19,9 +19,28 @@ import ElementaryGates
 -- | comments:
 -- |    overflow is neither detected nor handled
 
--- | todo: return zr and ng
-alu :: (Int, Int, Int, Int, Int, Int) -> [Int] -> [Int] -> [Int]
-alu (zx, nx, zy, ny, f, no) xs ys 
--- |              |-output negation-|               |-negate x---| |-zero x----------------|  |-negate y---| |-zero y----------------|
-    | f == 1    = map (xor_ no)      (snd (add_mbit (map (xor_ nx) (map (and_ (not_ zx)) xs)) (map (xor_ ny) (map (and_ (not_ zy)) ys))))
-    | otherwise = map (xor_ no)           (and_mbit (map (xor_ nx) (map (and_ (not_ zx)) xs)) (map (xor_ ny) (map (and_ (not_ zy)) ys)))
+negation :: Int -> Int -> Int
+negation n bytes
+    | n == 1    = complement bytes
+    | otherwise = bytes
+
+zero :: Int -> Int -> Int
+zero z bytes
+    | z == 1    = zeroBits 
+    | otherwise = bytes
+
+alu :: (Int, Int, Int, Int, Int, Int) -> Int -> Int -> Int 
+alu (zx, nx, zy, ny, f, no) x y 
+    | f == 1    = noCalc $ (+)   xsCalc ysCalc
+    | otherwise = noCalc $ (.&.) xsCalc ysCalc
+    where 
+        noCalc = negation no 
+        xsCalc = (negation nx $ zero zx x)
+        ysCalc = (negation ny $ zero zy y)
+        
+-- | Implementation based off ElementaryGates 
+-- alu :: (Int, Int, Int, Int, Int, Int) -> [Int] -> [Int] -> [Int]
+-- alu (zx, nx, zy, ny, f, no) xs ys 
+-- -- |              |-output negation-|               |-negate x---| |-zero x----------------|  |-negate y---| |-zero y----------------|
+--     | f == 1    = map (xor_ no)      (snd (add_mbit (map (xor_ nx) (map (and_ (not_ zx)) xs)) (map (xor_ ny) (map (and_ (not_ zy)) ys))))
+--     | otherwise = map (xor_ no)           (and_mbit ) (map (xor_ nx) (map (and_ (not_ zx)) xs)) (map (xor_ ny) (map (and_ (not_ zy)) ys))
