@@ -30,15 +30,16 @@ zero z bytes
     | otherwise = bytes
 
 alu :: (Int, Int, Int, Int, Int, Int) -> Int -> Int -> Int 
-alu (zx, nx, zy, ny, f, no) x y 
-    | f == 1    = noCalc $ (+)   xsCalc ysCalc
-    | otherwise = noCalc $ (.&.) xsCalc ysCalc
+alu (zx, nx, zy, ny, f, no) x y = no' $ f' x' y'
     where 
-        noCalc = negation no 
-        xsCalc = (negation nx $ zero zx x)
-        ysCalc = (negation ny $ zero zy y)
+        no' = negation no 
+        f'
+            | f == 1 = (+)
+            | otherwise = (.&.)
+        x'  = (negation nx $ zero zx x)
+        y'  = (negation ny $ zero zy y)
         
--- | Implementation based off ElementaryGates 
+-- | Implementation based off ElementaryGates, verbose
 -- alu :: (Int, Int, Int, Int, Int, Int) -> [Int] -> [Int] -> [Int]
 -- alu (zx, nx, zy, ny, f, no) xs ys 
 -- -- |              |-output negation-|               |-negate x---| |-zero x----------------|  |-negate y---| |-zero y----------------|
