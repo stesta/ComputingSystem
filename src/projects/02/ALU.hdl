@@ -42,5 +42,36 @@ CHIP ALU {
         ng; // 1 if (out < 0),  0 otherwise
 
     PARTS:
-   // Put you code here:
+    // basically the same thing as 
+    // https://github.com/stesta/ComputingSystem/blob/master/src/haskell/src/ALU.hs#L32-L40
+
+    // x, zeroed and negation
+    Mux16(a=x, b[0..15]=false, sel=zx, out=zx0); 
+    Not16(in=zx0 ,out=nx0);
+    Mux16(a=zx0, b=nx0, sel=nx, out=x0); 
+    
+    // y, zeroed and negation
+    Mux16(a=y, b[0..15]=false, sel=zy, out=zy0);
+    Not16(in=zy0, out=ny0);
+    Mux16(a=zy0, b=ny0, sel=ny, out=y0);
+
+    // is there a better way here?
+    // do we have to perform both functions?
+    Add16(a=x0, b=y0, out=fadd); 
+    And16(a=x0, b=y0, out=fand); 
+    Mux16(a=fand, b=fadd, sel=f, out=f0); 
+
+    // output negation
+    Not16(in=f0, out=no0);
+    Mux16(a=f0, b=no0, sel=no, out=out0); 
+
+    // out
+    Or16(a=out0, b[0..15]=false, out=out);
+
+    // zr
+    Or16Way(in=out0, out=zr0); 
+    Not(in=zr0, out=zr);
+
+    // ng
+    And16(a=out0, b[0..15]=true, out[15]=ng, out[0..14]=drop);
 }
