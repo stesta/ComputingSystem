@@ -10,3 +10,35 @@
 // R0 >= 0, R1 >= 0, and R0*R1 < 32768.
 
 // Put your code here.
+
+// use R0 as an iterator
+@R0
+D=M
+@i
+M=D
+
+// init R2 = 0
+@R2
+M=0
+
+(LOOP)
+    // end if iterator == 0 
+    @i
+    D=M
+    @END
+    D;JEQ
+
+    // perform a single iteration of addition
+    @R1
+    D=M
+    @R2
+    M=D+M
+
+    // decrement iterator and loop
+    @i
+    M=M-1
+    @LOOP
+    0;JMP
+(END)
+    @END
+    0;JMP
