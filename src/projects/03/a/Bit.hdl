@@ -2,19 +2,16 @@
 // and the book "The Elements of Computing Systems"
 // by Nisan and Schocken, MIT Press.
 // File name: projects/03/a/Bit.hdl
-
 /**
  * 1-bit register:
- * If load[t] == 1 then out[t+1] = in[t]
- *                 else out does not change (out[t+1] = out[t])
+ * If load is asserted, the register's value is set to in;
+ * Otherwise, the register maintains its current value:
+ * if (load(t)) out(t+1) = in(t), else out(t+1) = out(t)
  */
-
 CHIP Bit {
     IN in, load;
     OUT out;
 
     PARTS:
-    // based directly off Figure 3.9
-    Mux(a=dff0, b=in, sel=load, out=mux0);
-    DFF(in=mux0, out=out, out=dff0); // DFF is a given
+    //// Replace this comment with your code.
 }
