@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Computing System"
 run/main_scene="res://screen.tscn"
-config/features=PackedStringArray("4.2", "C#", "Mobile")
+config/features=PackedStringArray("4.4", "C#", "Mobile")
 config/icon="res://icon.svg"
 
 [dotnet]
