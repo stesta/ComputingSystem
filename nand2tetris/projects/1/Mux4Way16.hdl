@@ -15,16 +15,16 @@ CHIP Mux4Way16 {
     
     PARTS:
     // internal pins  
-    Not(in=sel[1], out=a1);
-    Not(in=sel[0], out=a2);
-    Not(in=sel[1], out=b1);
-    Not(in=sel[0], out=c2);
+    //Not(in=sel[1], out=b1);
+    //Not(in=sel[0], out=c2);
     
     // selection results
-    And(a=a1, b=a2, out=asel);
-    And(a=b1, b=sel[0], out=bsel);
-    And(a=sel[1], b=c2, out=csel);
-    And(a=sel[1], b=sel[0], out=dsel);
+    //And(a=b1, b=sel[0], out=bsel);
+    //And(a=sel[1], b=c2, out=csel);
+    //And(a=sel[1], b=sel[0], out=dsel);
+
+    // way more efficient selector
+    DMux4Way(in=true, sel=sel, a=asel, b=bsel, c=csel, d=dsel);
 
     // mux a,b and mux c,d
     Mux16(a=a, b=b, sel=bsel, out=mux1);
