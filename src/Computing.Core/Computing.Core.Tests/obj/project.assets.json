@@ -1708,16 +1708,6 @@
         "build": {
           "build/net6.0/xunit.runner.visualstudio.props": {}
         }
-      },
-      "Computing.Core/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "compile": {
-          "bin/placeholder/Computing.Core.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Computing.Core.dll": {}
-        }
       }
     }
   },
@@ -5507,16 +5497,10 @@
         "xunit.runner.visualstudio.2.5.3.nupkg.sha512",
         "xunit.runner.visualstudio.nuspec"
       ]
-    },
-    "Computing.Core/1.0.0": {
-      "type": "project",
-      "path": "../Computing.Core/Computing.Core/Computing.Core.csproj",
-      "msbuildProject": "../Computing.Core/Computing.Core/Computing.Core.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "Computing.Core >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 17.8.0",
       "coverlet.collector >= 6.0.0",
       "xunit >= 2.5.3",
@@ -5530,11 +5514,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\projects\\ComputingSystem\\src\\Computing.Core.Tests\\Computing.Core.Tests.csproj",
+      "projectUniqueName": "D:\\projects\\ComputingSystem\\src\\Computing.Core\\Computing.Core.Tests\\Computing.Core.Tests.csproj",
       "projectName": "Computing.Core.Tests",
-      "projectPath": "D:\\projects\\ComputingSystem\\src\\Computing.Core.Tests\\Computing.Core.Tests.csproj",
+      "projectPath": "D:\\projects\\ComputingSystem\\src\\Computing.Core\\Computing.Core.Tests\\Computing.Core.Tests.csproj",
       "packagesPath": "C:\\Users\\steve\\.nuget\\packages\\",
-      "outputPath": "D:\\projects\\ComputingSystem\\src\\Computing.Core.Tests\\obj\\",
+      "outputPath": "D:\\projects\\ComputingSystem\\src\\Computing.Core\\Computing.Core.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -5554,11 +5538,7 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {
-            "D:\\projects\\ComputingSystem\\src\\Computing.Core\\Computing.Core\\Computing.Core.csproj": {
-              "projectPath": "D:\\projects\\ComputingSystem\\src\\Computing.Core\\Computing.Core\\Computing.Core.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {

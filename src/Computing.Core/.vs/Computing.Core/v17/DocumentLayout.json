@@ -3,11 +3,19 @@
   "WorkspaceRootPath": "D:\\projects\\ComputingSystem\\src\\Computing.Core\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{01E16CD3-548A-4A93-BBBE-EBC63AECA666}|Computing.Core\\Computing.Core.csproj|d:\\projects\\computingsystem\\src\\computing.core\\computing.core\\memory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01E16CD3-548A-4A93-BBBE-EBC63AECA666}|Computing.Core\\Computing.Core.csproj|solutionrelative:computing.core\\memory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01E16CD3-548A-4A93-BBBE-EBC63AECA666}|Computing.Core\\Computing.Core.csproj|d:\\projects\\computingsystem\\src\\computing.core\\computing.core\\clocks.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01E16CD3-548A-4A93-BBBE-EBC63AECA666}|Computing.Core\\Computing.Core.csproj|solutionrelative:computing.core\\clocks.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{01E16CD3-548A-4A93-BBBE-EBC63AECA666}|Computing.Core\\Computing.Core.csproj|d:\\projects\\computingsystem\\src\\computing.core\\computing.core\\chips.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{01E16CD3-548A-4A93-BBBE-EBC63AECA666}|Computing.Core\\Computing.Core.csproj|solutionrelative:computing.core\\chips.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EE2F658C-AAC2-40F5-B419-81884E3B4FE8}|..\\Computing.Core.Tests\\Computing.Core.Tests.csproj|d:\\projects\\computingsystem\\src\\computing.core.tests\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|d:\\projects\\computingsystem\\src\\computing.core.tests\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,25 +30,50 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "UnitTest1.cs",
-              "DocumentMoniker": "D:\\projects\\ComputingSystem\\src\\Computing.Core.Tests\\UnitTest1.cs",
-              "RelativeDocumentMoniker": "..\\Computing.Core.Tests\\UnitTest1.cs",
-              "ToolTip": "D:\\projects\\ComputingSystem\\src\\Computing.Core.Tests\\UnitTest1.cs",
-              "RelativeToolTip": "..\\Computing.Core.Tests\\UnitTest1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAnAAAAAAAAAA==",
+              "Title": "Clocks.cs",
+              "DocumentMoniker": "D:\\projects\\ComputingSystem\\src\\Computing.Core\\Computing.Core\\Clocks.cs",
+              "RelativeDocumentMoniker": "Computing.Core\\Clocks.cs",
+              "ToolTip": "D:\\projects\\ComputingSystem\\src\\Computing.Core\\Computing.Core\\Clocks.cs",
+              "RelativeToolTip": "Computing.Core\\Clocks.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-16T14:02:57.594Z",
+              "WhenOpened": "2025-08-21T03:22:22.888Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Memory.cs",
+              "DocumentMoniker": "D:\\projects\\ComputingSystem\\src\\Computing.Core\\Computing.Core\\Memory.cs",
+              "RelativeDocumentMoniker": "Computing.Core\\Memory.cs",
+              "ToolTip": "D:\\projects\\ComputingSystem\\src\\Computing.Core\\Computing.Core\\Memory.cs",
+              "RelativeToolTip": "Computing.Core\\Memory.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAQwBIAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-21T03:21:04.305Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UnitTest1.cs",
+              "DocumentMoniker": "D:\\projects\\ComputingSystem\\src\\Computing.Core\\Computing.Core.Tests\\UnitTest1.cs",
+              "RelativeDocumentMoniker": "Computing.Core.Tests\\UnitTest1.cs",
+              "ToolTip": "D:\\projects\\ComputingSystem\\src\\Computing.Core\\Computing.Core.Tests\\UnitTest1.cs",
+              "RelativeToolTip": "Computing.Core.Tests\\UnitTest1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-16T14:02:57.594Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Chips.cs",
               "DocumentMoniker": "D:\\projects\\ComputingSystem\\src\\Computing.Core\\Computing.Core\\Chips.cs",
               "RelativeDocumentMoniker": "Computing.Core\\Chips.cs",
               "ToolTip": "D:\\projects\\ComputingSystem\\src\\Computing.Core\\Computing.Core\\Chips.cs",
               "RelativeToolTip": "Computing.Core\\Chips.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAA1wCAAAAAyAAAAAAAAAA==",
+              "ViewState": "AgIAAC4AAAAAAAAAAADwvzIAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-12T03:24:43.025Z",
               "EditorCaption": ""
