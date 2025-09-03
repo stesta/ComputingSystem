@@ -5,6 +5,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{1AA6619A-7EBA-4096-8BC5-F79A0525089B}|Computing System.csproj|d:\\projects\\computingsystem\\src\\godot-csharp\\screensprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1AA6619A-7EBA-4096-8BC5-F79A0525089B}|Computing System.csproj|solutionrelative:screensprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1AA6619A-7EBA-4096-8BC5-F79A0525089B}|Computing System.csproj|d:\\projects\\computingsystem\\src\\godot-csharp\\chips.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1AA6619A-7EBA-4096-8BC5-F79A0525089B}|Computing System.csproj|solutionrelative:chips.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,11 +30,24 @@
               "Title": "ScreenSprite.cs",
               "DocumentMoniker": "D:\\projects\\ComputingSystem\\src\\godot-csharp\\ScreenSprite.cs",
               "RelativeDocumentMoniker": "ScreenSprite.cs",
-              "ToolTip": "D:\\projects\\ComputingSystem\\src\\godot-csharp\\ScreenSprite.cs",
-              "RelativeToolTip": "ScreenSprite.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAAwBIAAAA6AAAAAAAAAA==",
+              "ToolTip": "D:\\projects\\ComputingSystem\\src\\godot-csharp\\ScreenSprite.cs*",
+              "RelativeToolTip": "ScreenSprite.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-03T02:42:58.452Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Chips.cs",
+              "DocumentMoniker": "D:\\projects\\ComputingSystem\\src\\godot-csharp\\Chips.cs",
+              "RelativeDocumentMoniker": "Chips.cs",
+              "ToolTip": "D:\\projects\\ComputingSystem\\src\\godot-csharp\\Chips.cs",
+              "RelativeToolTip": "Chips.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T04:59:38.556Z",
               "EditorCaption": ""
             }
           ]
