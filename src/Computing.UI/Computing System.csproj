@@ -4,4 +4,7 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>ComputingSystem</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Computing.Core\Computing.Core.csproj" />
+  </ItemGroup>
 </Project>

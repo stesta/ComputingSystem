@@ -11,9 +11,14 @@ config_version=5
 [application]
 
 config/name="Computing System"
-run/main_scene="res://screen.tscn"
+run/main_scene="res://Peripherals/screen.tscn"
 config/features=PackedStringArray("4.4", "C#", "Mobile")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1024
+window/size/viewport_height=512
 
 [dotnet]
 
