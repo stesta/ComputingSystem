@@ -36,7 +36,7 @@ public partial class Screen : Sprite2D
 		SetPixel(10, 10, true);
 		SetPixel(11, 10, true);
 		SetPixel(12, 10, true);
-		SetPixel(14, 10, true);
+
 	}
 
 	public void SetPixel(int x, int y, bool on)
