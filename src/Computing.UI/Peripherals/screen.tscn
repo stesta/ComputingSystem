@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://blccx1sdnrlrq"]
-
-[ext_resource type="Script" uid="uid://xei5xixa6bwy" path="res://Peripherals/Screen.cs" id="1_vouji"]
-
-[node name="Node2D" type="Node2D"]
-
-[node name="Screen" type="Sprite2D" parent="."]
-offset = Vector2(256, 128)
-script = ExtResource("1_vouji")

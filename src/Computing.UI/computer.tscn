@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://blccx1sdnrlrq"]
+
+[ext_resource type="Script" uid="uid://bpdnr6oku6ult" path="res://Components/HardwareClock.cs" id="1_18hgq"]
+[ext_resource type="Script" uid="uid://xei5xixa6bwy" path="res://Components/Screen.cs" id="2_gcbbq"]
+
+[node name="Computer" type="Node2D"]
+
+[node name="Clock" type="Timer" parent="."]
+autostart = true
+script = ExtResource("1_18hgq")
+
+[node name="Peripherals" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Keyboard" type="Node" parent="Peripherals"]
+
+[node name="Screen" type="Sprite2D" parent="Peripherals"]
+offset = Vector2(256, 128)
+script = ExtResource("2_gcbbq")
+Foreground = Color(0, 0.720339, 0, 1)
+
+[node name="Components" type="Node" parent="."]
+
+[node name="CPU" type="Node" parent="Components"]
+
+[node name="RAM" type="Node" parent="Components"]
+
+[node name="ROM" type="Node" parent="Components"]
+
+[connection signal="Clock" from="Clock" to="Peripherals/Screen" method="_on_timer_timeout"]
