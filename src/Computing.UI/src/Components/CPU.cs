@@ -31,8 +31,22 @@ public class ProgramCounter
 
 public class CPU
 {
-    private int A = new();
-    private int D = new();
-    private ProgramCounter PC = new();
+    public int A = new();
+    public int D = new();
+    public int PC = new();
 
+    private bool toggle = false;
+
+    // TODO: need to actually implement the CPU
+    public void Execute(int instruction, RAM ram)
+    {
+        int value = toggle ? 0xFFFF : 0x0000;
+
+        ram.Write(16835, value);
+        ram.Write(16836, value);
+        ram.Write(16837, value);
+        ram.Write(16838, value);
+
+        toggle = !toggle;
+    }
 }

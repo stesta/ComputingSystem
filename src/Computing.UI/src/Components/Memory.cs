@@ -38,20 +38,31 @@ public class Register
 /// this is a more general RAM/ROM implementation that can be used for any size
 /// it skips the primitive chipsets for efficiency.
 /// </summary>
-public class Memory
+public class RAM
 {
     private int[] _registers = new int[32678];
 
-    // READ
-    // WRITE
+    public int Read(int address) => _registers[address];
+    public void Write(int address, int value) => _registers[address] = value;
 
-    //public void Compute(int input, int address, int load)
-    //{
-    //    if (address < 0 || address >= _registers.Length)
-    //    {
-    //        throw new ArgumentOutOfRangeException(nameof(address), $"Address must be in interval [0,{_registers.Length - 1}].");
-    //    }
+    public int[] ReadScreen() => _registers[16384..25576];
 
-    //    _registers[address].Compute(input, load);
-    //}
+    public int ReadKeyboard => _registers[24576];
+}
+
+
+/// <summary>
+/// this is a more general RAM/ROM implementation that can be used for any size
+/// it skips the primitive chipsets for efficiency.
+/// </summary>
+public class ROM
+{
+    private int[] _registers; 
+
+    public ROM(int[] registers)
+    {
+        _registers = registers;
+    }
+
+    public int Read(int address) => _registers[address];
 }

@@ -6,12 +6,18 @@ using ComputingSystem.Components;
 
 public partial class Computer : Node2D
 {
-    private Memory RAM = new();
-    private Memory ROM = new();
-    private CPU CPU = new();
+    private RAM _ram = new();
+    private ROM _rom = new(new int[32678]);
+    private CPU _cpu = new();
+
+    [Signal]
+    public delegate void ScreenUpdateEventHandler(int[] pixels);
 
     public void Tick()
     {
-        Debug.WriteLine("tick");
+        int instruction = _rom.Read(_cpu.PC);
+        _cpu.Execute(instruction, _ram);
+
+        EmitSignal("ScreenUpdate", _ram.ReadScreen());
     }
 }

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://blccx1sdnrlrq"]
 
-[ext_resource type="Script" uid="uid://bfim2rv5fu481" path="res://Computer.cs" id="1_18hgq"]
+[ext_resource type="Script" uid="uid://c7bs4tik34v11" path="res://src/Computer.cs" id="1_18hgq"]
 [ext_resource type="Script" uid="uid://xei5xixa6bwy" path="res://src/Components/Screen.cs" id="2_gcbbq"]
 
 [node name="Computer" type="Node2D"]
@@ -18,6 +18,6 @@ anchors_preset = 0
 [node name="Screen" type="Sprite2D" parent="Peripherals"]
 offset = Vector2(256, 128)
 script = ExtResource("2_gcbbq")
-Foreground = Color(0, 0.720339, 0, 1)
 
+[connection signal="ScreenUpdate" from="." to="Peripherals/Screen" method="SetPixels"]
 [connection signal="timeout" from="Clock" to="." method="Tick"]

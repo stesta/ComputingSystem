@@ -65,19 +65,19 @@ public class Register
 /// this is a more general RAM/ROM implementation that can be used for any size
 /// it skips the primitive chipsets for efficiency.
 /// </summary>
-public class Memory
-{
-    private int[] _registers = new int[32678];
+//public class Memory
+//{
+//    private int[] _registers = new int[32678];
 
 
 
-    public void Compute(int input, int address, int load)
-    {
-        if (address < 0 || address >= _registers.Length)
-        {
-            throw new ArgumentOutOfRangeException(nameof(address), $"Address must be in interval [0,{_registers.Length - 1}].");
-        }
+//    public void Compute(int input, int address, int load)
+//    {
+//        if (address < 0 || address >= _registers.Length)
+//        {
+//            throw new ArgumentOutOfRangeException(nameof(address), $"Address must be in interval [0,{_registers.Length - 1}].");
+//        }
 
-        _registers[address].Compute(input, load);
-    }
-}
+//        _registers[address].Compute(input, load);
+//    }
+//}
