@@ -31,10 +31,67 @@ internal sealed class CompileCommand : Command<CompileCommand.Settings>
             return -1;
         }
 
+        FirstPass(filePath);
+        SecondPass(filePath);
+        
+        return 0;
+    }
 
+    private Dictionary<string, int> _symbols = new()
+    {
+        { "SP", 0 },
+        { "LCL", 1 },
+        { "ARG", 2 },
+        { "THIS", 3 },
+        { "THAT", 4 },
+        { "R0", 0 },
+        { "R1", 1 },
+        { "R2", 2 },
+        { "R3", 3 },
+        { "R4", 4 },
+        { "R5", 5 },
+        { "R6", 6 },
+        { "R7", 7 },
+        { "R8", 8 },
+        { "R9", 9 },
+        { "R10", 10 },
+        { "R11", 11 },
+        { "R12", 12 },
+        { "R13", 13 },
+        { "R14", 14 },
+        { "R15", 15 },
+        { "SCREEN", 16384 },
+        { "KBD", 24576 },
+    };
+
+    public void FirstPass(string filePath)
+    {
+        var _parser = new Parser(filePath);
+        int newLInstructions = 0;
+
+        while (_parser.HasMoreLines())
+        {
+            _parser.Advance();
+            var instructionType = _parser.InstructionType();
+            if (instructionType == InstructionTypes.L_INSTRUCTION)
+            {
+                var symbol = _parser.Symbol();
+                if (!_symbols.ContainsKey(symbol))
+                {
+                    _symbols.Add(symbol, _parser._currentLineIndex - newLInstructions);
+                    newLInstructions++;
+                }
+            }
+        }
+    }
+
+    public void SecondPass(string filePath)
+    {
         var _parser = new Parser(filePath);
 
         List<string> instructions = new();
+
+        int newVariables = 0;
 
         while (_parser.HasMoreLines())
         {
@@ -44,9 +101,20 @@ internal sealed class CompileCommand : Command<CompileCommand.Settings>
             if (instructionType == InstructionTypes.A_INSTRUCTION)
             {
                 var symbol = _parser.Symbol();
-                int symbolValue = int.Parse(symbol);
-                
-                instructions.Add(Convert.ToString(symbolValue, 2).PadLeft(16, '0'));
+                if (int.TryParse(symbol, out int symbolInt))
+                {
+                    instructions.Add(Convert.ToString(symbolInt, 2).PadLeft(16, '0'));
+                }
+                else
+                {
+                    if (!_symbols.ContainsKey(symbol))
+                    {
+                        _symbols.Add(symbol, 16 + newVariables);
+                        newVariables++;
+                    }
+                    var address = _symbols[symbol];
+                    instructions.Add(Convert.ToString(address, 2).PadLeft(16, '0'));
+                }
             }
             else if (instructionType == InstructionTypes.C_INSTRUCTION)
             {
@@ -56,15 +124,8 @@ internal sealed class CompileCommand : Command<CompileCommand.Settings>
 
                 instructions.Add($"111{comp}{dest}{jump}");
             }
-            else if (instructionType == InstructionTypes.L_INSTRUCTION)
-            {
-                var symbol = _parser.Symbol();
-            }
-
         }
 
         File.WriteAllText(filePath.Replace(".asm", ".c.hack"), string.Join(Environment.NewLine, instructions));
-
-        return 0;
     }
 }

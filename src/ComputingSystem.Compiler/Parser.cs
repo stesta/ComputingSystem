@@ -17,13 +17,17 @@ namespace ComputingSystem.Compiler
     {
         private string[] _lines;
         private int _totalLines;
-        private int _currentLineIndex = -1;
+        public int _currentLineIndex = -1;
 
         private Dictionary<string, int> _symbols = new();
 
         public Parser(string filePath)
         {
-            _lines = File.ReadAllLines(filePath);
+            _lines = File.ReadAllLines(filePath)
+                .Select(line => line.Trim())
+                .Where(line => line.Length != 0 && !line.StartsWith("//"))
+                .ToArray();
+
             _totalLines = _lines.Length;
         }
 
