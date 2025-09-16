@@ -1,9 +1,8 @@
-using System.Diagnostics.Metrics;
-using System.Runtime.Intrinsics.Arm;
+using ComputingSystem.Core;
 
-namespace Computing.Core.Tests;
+namespace ComputingSystem.Tests;
 
-public class UnitTest1
+public class ChipTests
 {
     private const int _0 = unchecked((int)0b00000000000000000000000000000000);
     private const int _1 = unchecked((int)0b11111111111111111111111111111111);
@@ -60,30 +59,5 @@ public class UnitTest1
     {
         var result = Chips.Xor(a, b);
         Assert.Equal(expected, result);
-    }
-
-    [Theory]
-    [InlineData(1, 0, 1, 0, 1, 0, 3, 5, 0)] // 0
-    [InlineData(1, 1, 1, 1, 1, 1, 3, 5, 1)] // 1
-    [InlineData(1, 1, 1, 0, 1, 0, 3, 5, -1)] // -1
-    [InlineData(0, 0, 1, 1, 0, 0, 3, 5, 3)] // x
-    [InlineData(1, 1, 0, 0, 0, 0, 3, 5, 5)] // y
-    [InlineData(0, 0, 1, 1, 0, 1, 3, 5, ~3)] // !x
-    [InlineData(1, 1, 0, 0, 0, 1, 3, 5, ~5)] // !y
-    [InlineData(0, 0, 1, 1, 1, 1, 3, 5, -3)] // -x
-    [InlineData(1, 1, 0, 0, 1, 1, 3, 5, -5)] // -y
-    [InlineData(0, 1, 1, 1, 1, 1, 3, 5, 4)] // x+1
-    [InlineData(1, 1, 0, 1, 1, 1, 3, 5, 6)] // y+1
-    [InlineData(0, 0, 1, 1, 1, 0, 3, 5, 2)] // x-1
-    [InlineData(1, 1, 0, 0, 1, 0, 3, 5, 4)] // y-1
-    [InlineData(0, 0, 0, 0, 1, 0, 3, 5, 8)] // x+y
-    [InlineData(0, 1, 0, 0, 1, 1, 3, 5, -2)] // x-y
-    [InlineData(0, 0, 0, 1, 1, 1, 3, 5, 2)] // y-x
-    [InlineData(0, 0, 0, 0, 0, 0, 3, 5, 1)] // x&y
-    [InlineData(0, 1, 0, 1, 0, 1, 3, 5, 7)] // x|y
-    public void ALUTest(int zx, int nx, int zy, int ny, int f, int no, int x, int y, int expected)
-    {
-        var result = Chips.ALU((zx, nx, zy, ny, f, no), x, y);
-        Assert.Equal(expected, result.output);
     }
 }

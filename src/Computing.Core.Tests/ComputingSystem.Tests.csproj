@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Computing.Core\Computing.Core.csproj" />
+    <ProjectReference Include="..\Computing.Core\ComputingSystem.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

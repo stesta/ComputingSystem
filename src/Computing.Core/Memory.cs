@@ -1,38 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Computing.Core;
-
-// TODO: timing on this is probably wrong, need to check against the clock
-public class PC
-{
-    private int _value = 0;
-
-    public int Tick(int input, int load, int inc, int reset)
-    {
-        if (reset != 0)
-        {
-            _value = 0;
-        }
-        else if (load != 0)
-        {
-            _value = input & 0xFFFF; // Ensure we only keep the lower 16 bits
-        }
-        else if (inc != 0)
-        {
-            _value = (_value + 1) & 0xFFFF; // Increment and wrap around at 16 bits
-        }
-
-        return _value;
-    }
-}
-
+﻿namespace ComputingSystem.Core;
 
 // 16 bit register implementation
-// Updated to support a clock input
+// support a clock input for edge-level timing
 public class Register
 {
     private int _dff = 0;
@@ -61,23 +30,82 @@ public class Register
 }
 
 
+public struct PixelChange
+{ 
+    public int X;
+    public int Y;
+    public int Value;
+}
+
 /// <summary>
 /// this is a more general RAM/ROM implementation that can be used for any size
 /// it skips the primitive chipsets for efficiency.
 /// </summary>
-//public class Memory
-//{
-//    private int[] _registers = new int[32678];
+public class RAM
+{
+    private int[] _registers = new int[32678];
+    
+
+    public int Read(int address) => _registers[address];
+    public void Write(int address, int value) 
+    {
+        value &= 0xFFFF;
+
+        if (address >= 16384 && address <= 25576)
+        {
+            int index = address - 16384;
+            int previousValue = _registers[address];
+            
+            if (previousValue != value)
+            {
+                for (int bit = 0; bit < 16; bit++)
+                {
+                    int previousBit = previousValue >> bit & 1;
+                    int newBit = value >> bit & 1;
+
+                    if (previousBit != newBit)
+                    {
+                        int pixelIndex = index * 16 + bit;
+                        _pixelChanges.Add(new()
+                        {
+                            X = pixelIndex % 512,
+                            Y = pixelIndex / 512,
+                            Value = newBit
+                        });
+                    }
+                }
+            }
+        }
+
+        _registers[address] = value;
+    }
+
+    private List<PixelChange> _pixelChanges = new();
+    public List<PixelChange> ConsumePixelChanges()
+    {
+        var response = new List<PixelChange>(_pixelChanges);
+        _pixelChanges.Clear();
+
+        return response;
+    }
+
+    public int[] ReadScreen() => _registers[16384..25576];
+    public int ReadKeyboard => _registers[24576];
+}
 
 
+/// <summary>
+/// this is a more general RAM/ROM implementation that can be used for any size
+/// it skips the primitive chipsets for efficiency.
+/// </summary>
+public class ROM
+{
+    private int[] _registers; 
 
-//    public void Compute(int input, int address, int load)
-//    {
-//        if (address < 0 || address >= _registers.Length)
-//        {
-//            throw new ArgumentOutOfRangeException(nameof(address), $"Address must be in interval [0,{_registers.Length - 1}].");
-//        }
+    public ROM(int[] registers)
+    {
+        _registers = registers;
+    }
 
-//        _registers[address].Compute(input, load);
-//    }
-//}
+    public int Read(int address) => _registers[address];
+}

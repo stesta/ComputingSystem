@@ -1,6 +1,8 @@
 using Godot;
-using System;
-using System.Diagnostics;
+using ComputingSystem.Core;
+using System.Collections.Generic;
+
+namespace ComputingSystem.Peripherals;
 
 public partial class Screen : Sprite2D
 {
@@ -33,22 +35,11 @@ public partial class Screen : Sprite2D
 		Scale = new Vector2(2, 2);
 	}
 
-    // Signal Handler for Screen Updates
-    public void SetPixels(int[] pixels)
+    public void SetPixels(List<PixelChange> pixels)
 	{
-        for (int i = 0; i < 8192; i++)
+        foreach(var pixel in pixels)
         {
-            ushort word = (ushort)pixels[i];
-            int row = i / _wordsPerRow;
-            int colStart = (i % _wordsPerRow) * _bitsPerWord;
-
-            for (int bit = 0; bit < _bitsPerWord; bit++)
-            {
-                int x = colStart + bit;
-                int y = row;
-                bool isSet = (word & (1 << bit)) != 0;
-                _image.SetPixel(x, y, isSet ? Foreground : Background);
-            }
+            _image.SetPixel(pixel.X, pixel.Y, pixel.Value == 1 ? Foreground : Background);
         }
 
         _texture.Update(_image);

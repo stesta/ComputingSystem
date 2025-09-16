@@ -22,7 +22,7 @@ window/size/viewport_height=512
 
 [dotnet]
 
-project/assembly_name="Computing System"
+project/assembly_name="ComputingSystem"
 
 [rendering]
 

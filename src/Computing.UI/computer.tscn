@@ -1,13 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://blccx1sdnrlrq"]
 
-[ext_resource type="Script" uid="uid://c7bs4tik34v11" path="res://src/Computer.cs" id="1_18hgq"]
-[ext_resource type="Script" uid="uid://xei5xixa6bwy" path="res://src/Components/Screen.cs" id="2_gcbbq"]
+[ext_resource type="Script" uid="uid://ba8a33cday54h" path="res://Computer.cs" id="1_18hgq"]
+[ext_resource type="Script" uid="uid://xei5xixa6bwy" path="res://Peripherals/Screen.cs" id="2_gcbbq"]
 
-[node name="Computer" type="Node2D"]
+[node name="Computer" type="Node2D" node_paths=PackedStringArray("Screen")]
 script = ExtResource("1_18hgq")
-
-[node name="Clock" type="Timer" parent="."]
-autostart = true
+Screen = NodePath("Peripherals/Screen")
+TicksPerSecond = 1000
 
 [node name="Peripherals" type="Control" parent="."]
 layout_mode = 3
@@ -18,6 +17,3 @@ anchors_preset = 0
 [node name="Screen" type="Sprite2D" parent="Peripherals"]
 offset = Vector2(256, 128)
 script = ExtResource("2_gcbbq")
-
-[connection signal="ScreenUpdate" from="." to="Peripherals/Screen" method="SetPixels"]
-[connection signal="timeout" from="Clock" to="." method="Tick"]
