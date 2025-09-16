@@ -63,7 +63,7 @@ internal sealed class CompileCommand : Command<CompileCommand.Settings>
 
         }
 
-        File.WriteAllLines(filePath.Replace(".asm", ".hack"), instructions);
+        File.WriteAllText(filePath.Replace(".asm", ".c.hack"), string.Join(Environment.NewLine, instructions));
 
         return 0;
     }
