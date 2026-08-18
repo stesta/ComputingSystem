@@ -6,7 +6,7 @@
 [node name="Computer" type="Node2D" node_paths=PackedStringArray("Screen")]
 script = ExtResource("1_18hgq")
 Screen = NodePath("Peripherals/Screen")
-TicksPerSecond = 1000
+TicksPerSecond = 1000000
 
 [node name="Peripherals" type="Control" parent="."]
 layout_mode = 3

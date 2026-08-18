@@ -1,6 +1,8 @@
 using Godot;
 using ComputingSystem.Core;
 using ComputingSystem.Peripherals;
+using System.Diagnostics;
+using System.Threading;
 
 namespace ComputingSystem;
 
@@ -13,10 +15,17 @@ public partial class Computer : Node2D
     [Export]
     public Screen Screen { get; set; }
 
+    // Clock speed of the emulated CPU. This is intentionally decoupled from
+    // the render frame rate: the CPU runs on its own thread as fast as this
+    // allows, and the UI thread just paints whatever pixels changed since
+    // the last rendered frame.
     [Export]
-    public int TicksPerSecond { get; set; } = 2500;
+    public int TicksPerSecond { get; set; } = 1_000_000; // 1MHz
 
-    private float _tickInterval => 1.0f / TicksPerSecond;
+    private double _tickInterval => 1.0 / TicksPerSecond;
+
+    private Thread _cpuThread;
+    private volatile bool _running;
 
     public Computer()
     {
@@ -65,18 +74,58 @@ public partial class Computer : Node2D
         _rom = new ROM(instructions);
     }
 
-    private double _accumulatedTime = 0;
+    public override void _Ready()
+    {
+        _running = true;
+        _cpuThread = new Thread(RunCpuLoop) { IsBackground = true };
+        _cpuThread.Start();
+    }
+
+    public override void _ExitTree()
+    {
+        _running = false;
+        _cpuThread?.Join();
+    }
 
     public override void _Process(double delta)
     {
-        _accumulatedTime += delta;
-        while (_accumulatedTime >= _tickInterval)
+        var pixels = _ram.ConsumePixelChanges();
+        if (pixels.Count > 0)
         {
-            Tick();
-            _accumulatedTime -= _tickInterval;
+            Screen.SetPixels(pixels);
         }
     }
 
+    // Runs on a background thread, independent of the render frame rate, so
+    // the emulated computer keeps executing instructions even if a frame
+    // takes a while to render. Paced against a Stopwatch rather than tied
+    // to any single frame's delta.
+    private void RunCpuLoop()
+    {
+        var stopwatch = Stopwatch.StartNew();
+        double lastElapsed = 0;
+        double accumulatedTime = 0;
+
+        while (_running)
+        {
+            double elapsed = stopwatch.Elapsed.TotalSeconds;
+            accumulatedTime += elapsed - lastElapsed;
+            lastElapsed = elapsed;
+
+            bool ticked = false;
+            while (accumulatedTime >= _tickInterval)
+            {
+                Tick();
+                accumulatedTime -= _tickInterval;
+                ticked = true;
+            }
+
+            if (!ticked)
+            {
+                Thread.Sleep(1);
+            }
+        }
+    }
 
     public void Tick()
     {
@@ -85,10 +134,5 @@ public partial class Computer : Node2D
 
         // TODO: needs some more robust debugging and visualization in UI
         //Debug.WriteLine($"A: {_cpu.A}, D: {_cpu.D}, PC: {_cpu.PC}, RAM[0]: {_ram.Read(0)}");
-
-        var pixels = _ram.ConsumePixelChanges();
-        Screen.SetPixels(pixels);
     }
-
-    
 }

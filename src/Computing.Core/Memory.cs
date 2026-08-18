@@ -66,12 +66,15 @@ public class RAM
                     if (previousBit != newBit)
                     {
                         int pixelIndex = index * 16 + bit;
-                        _pixelChanges.Add(new()
+                        lock (_pixelChangesLock)
                         {
-                            X = pixelIndex % 512,
-                            Y = pixelIndex / 512,
-                            Value = newBit
-                        });
+                            _pixelChanges.Add(new()
+                            {
+                                X = pixelIndex % 512,
+                                Y = pixelIndex / 512,
+                                Value = newBit
+                            });
+                        }
                     }
                 }
             }
@@ -80,13 +83,16 @@ public class RAM
         _registers[address] = value;
     }
 
+    private readonly object _pixelChangesLock = new();
     private List<PixelChange> _pixelChanges = new();
     public List<PixelChange> ConsumePixelChanges()
     {
-        var response = new List<PixelChange>(_pixelChanges);
-        _pixelChanges.Clear();
-
-        return response;
+        lock (_pixelChangesLock)
+        {
+            var response = new List<PixelChange>(_pixelChanges);
+            _pixelChanges.Clear();
+            return response;
+        }
     }
 
     public int[] ReadScreen() => _registers[16384..25576];
