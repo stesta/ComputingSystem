@@ -1,19 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://blccx1sdnrlrq"]
+[gd_scene format=3 uid="uid://blccx1sdnrlrq"]
 
 [ext_resource type="Script" uid="uid://ba8a33cday54h" path="res://Computer.cs" id="1_18hgq"]
 [ext_resource type="Script" uid="uid://xei5xixa6bwy" path="res://Peripherals/Screen.cs" id="2_gcbbq"]
 
-[node name="Computer" type="Node2D" node_paths=PackedStringArray("Screen")]
+[node name="Computer" type="Node2D" unique_id=677492721 node_paths=PackedStringArray("Screen")]
 script = ExtResource("1_18hgq")
 Screen = NodePath("Peripherals/Screen")
-TicksPerSecond = 1000000
 
-[node name="Peripherals" type="Control" parent="."]
+[node name="Peripherals" type="Control" parent="." unique_id=175812461]
 layout_mode = 3
 anchors_preset = 0
 
-[node name="Keyboard" type="Node" parent="Peripherals"]
+[node name="Keyboard" type="Node" parent="Peripherals" unique_id=2104891658]
 
-[node name="Screen" type="Sprite2D" parent="Peripherals"]
+[node name="Screen" type="Sprite2D" parent="Peripherals" unique_id=284566971]
 offset = Vector2(256, 128)
 script = ExtResource("2_gcbbq")
